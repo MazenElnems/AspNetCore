@@ -9,6 +9,7 @@ using Xunit;
 using Fizzler;
 using Fizzler.Systems.HtmlAgilityPack;
 using HtmlAgilityPack;
+using System.Net;
 
 namespace CRUDTests
 {
@@ -32,8 +33,8 @@ namespace CRUDTests
    //Act
    HttpResponseMessage response = await _client.GetAsync("/Persons/Index");
 
-   //Assert
-   response.Should().BeSuccessful(); //2xx
+            //Assert
+   response.StatusCode.Should().Be(HttpStatusCode.OK); //2xx
 
    string responseBody = await response.Content.ReadAsStringAsync();
 
